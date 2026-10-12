@@ -1,0 +1,292 @@
+:root {
+  --bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --ink: #1a1d29;
+  --ink-soft: #6b7086;
+  --primary: #e8622c;
+  --primary-dark: #c74f1f;
+  --primary-soft: #fdeee5;
+  --protein: #e8622c;
+  --carbs: #2b9348;
+  --fat: #d4a017;
+  --border: #ebedf5;
+  --error: #d64545;
+  --error-bg: #fdecec;
+  --warn-bg: #fff8e6;
+  --warn-ink: #8a6500;
+  --radius: 18px;
+  --shadow: 0 4px 24px rgba(26, 29, 41, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Vazirmatn', 'Noto Sans Arabic', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+}
+
+/* --- Header --- */
+.header {
+  padding: 28px 4px 16px;
+  text-align: center;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.logo { font-size: 28px; }
+.header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--ink);
+}
+.tagline {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- Main --- */
+.main { flex: 1; padding-bottom: 24px; }
+
+.quota-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* --- Upload card --- */
+.upload-card { display: flex; flex-direction: column; gap: 16px; }
+
+.dropzone {
+  display: block;
+  cursor: pointer;
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.dropzone:active { border-color: var(--primary); }
+
+.dropzone-empty {
+  text-align: center;
+  padding: 24px;
+}
+.dropzone-icon { font-size: 40px; display: block; margin-bottom: 10px; }
+.dropzone-text {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+.dropzone-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.preview-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Buttons --- */
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 15px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: transform 0.08s ease, opacity 0.15s ease;
+}
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-primary:not(:disabled):hover { background: var(--primary-dark); }
+
+.btn-secondary {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  margin-top: 8px;
+}
+
+.btn-icon { font-size: 18px; }
+
+.btn-reset {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+/* --- Loading / empty / warn / error states --- */
+.state-card {
+  text-align: center;
+  padding: 44px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.state-icon { font-size: 40px; margin-bottom: 6px; }
+.state-title { font-weight: 700; font-size: 16px; margin: 0; }
+.state-sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 14px; }
+.state-card .btn { max-width: 260px; }
+
+.state-card-warn { background: var(--warn-bg); }
+.state-card-warn .state-title,
+.state-card-warn .state-sub { color: var(--warn-ink); }
+
+.state-card-error { background: var(--error-bg); }
+.state-card-error .state-title,
+.state-card-error .state-sub { color: var(--error); }
+
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 10px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Result card --- */
+.result-card { position: relative; padding-top: 28px; }
+
+.kcal-hero {
+  text-align: center;
+  padding: 12px 0 20px;
+}
+.kcal-value {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+.kcal-unit {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.macro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.macro-card {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.macro-icon { font-size: 18px; display: block; margin-bottom: 4px; }
+.macro-value { display: block; font-weight: 700; font-size: 16px; }
+.macro-label { display: block; font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+.macro-protein .macro-value { color: var(--protein); }
+.macro-carbs .macro-value { color: var(--carbs); }
+.macro-fat .macro-value { color: var(--fat); }
+
+.foods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.food-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+.food-row-name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.food-row-kcal { color: var(--ink-soft); font-size: 13px; font-weight: 600; }
+
+.insight-text, .note-text {
+  font-size: 13px;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  padding: 16px 8px 28px;
+}
+.footer p {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Small screens polish --- */
+@media (max-width: 360px) {
+  .kcal-value { font-size: 40px; }
+  .header h1 { font-size: 19px; }
+}

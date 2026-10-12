@@ -1,0 +1,6 @@
+# Web API dependencies. Gemini itself is still called through the
+# standard-library urllib REST calls in vision.py (unchanged from the
+# original bot) - these three packages are only for serving HTTP.
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9

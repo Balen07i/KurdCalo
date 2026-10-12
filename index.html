@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ckb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>کورد کالۆ — ژمێرەری کالۆری خواردن</title>
+<meta name="description" content="وێنەی خواردنەکەت باربکە و بە دەنگی کوردی سۆرانی کالۆری، پرۆتین، کاربۆهایدرەیت و چەوری وەربگرە.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="header">
+    <div class="header-inner">
+      <span class="logo">🍲</span>
+      <h1>کورد کالۆ</h1>
+    </div>
+    <p class="tagline">وێنەی خواردنەکەت بنێرە، کالۆری و بژیی وزەییەکەی بزانە</p>
+  </header>
+
+  <main class="main">
+
+    <!-- Quota pill -->
+    <div id="quotaPill" class="quota-pill" hidden>
+      <span id="quotaText"></span>
+    </div>
+
+    <!-- Upload / empty state -->
+    <section id="uploadCard" class="card upload-card">
+      <label for="fileInput" class="dropzone" id="dropzone">
+        <div id="dropzoneEmpty" class="dropzone-empty">
+          <span class="dropzone-icon">📷</span>
+          <p class="dropzone-text">وێنەی خواردنەکەت هەڵبژێرە یان لێرە دایبنێ</p>
+          <p class="dropzone-sub">JPEG، PNG یان WEBP — تا ٨ مێگابایت</p>
+        </div>
+        <img id="previewImg" class="preview-img" hidden alt="وێنەی هەڵبژێردراو">
+      </label>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" capture="environment" hidden>
+
+      <button id="analyzeBtn" class="btn btn-primary" disabled>
+        <span class="btn-icon">✨</span>
+        <span>شیکردنەوەی خواردن</span>
+      </button>
+    </section>
+
+    <!-- Loading state -->
+    <section id="loadingCard" class="card state-card" hidden>
+      <div class="spinner"></div>
+      <p class="state-title">شیکردنەوەی وێنەکە...</p>
+      <p class="state-sub">چەند چرکەیەک چاوەڕێ بە</p>
+    </section>
+
+    <!-- Result state -->
+    <section id="resultCard" class="card result-card" hidden>
+      <button id="resetBtn" class="btn-reset" aria-label="وێنەیەکی تر">↻</button>
+
+      <div class="kcal-hero">
+        <span id="kcalValue" class="kcal-value">0</span>
+        <span class="kcal-unit">کالۆری</span>
+      </div>
+
+      <div class="macro-grid">
+        <div class="macro-card macro-protein">
+          <span class="macro-icon">🥩</span>
+          <span id="proteinValue" class="macro-value">0g</span>
+          <span class="macro-label">پرۆتین</span>
+        </div>
+        <div class="macro-card macro-carbs">
+          <span class="macro-icon">🍞</span>
+          <span id="carbsValue" class="macro-value">0g</span>
+          <span class="macro-label">کاربۆهایدرەیت</span>
+        </div>
+        <div class="macro-card macro-fat">
+          <span class="macro-icon">🧈</span>
+          <span id="fatValue" class="macro-value">0g</span>
+          <span class="macro-label">چەوری</span>
+        </div>
+      </div>
+
+      <div id="foodsList" class="foods-list"></div>
+
+      <p id="insightText" class="insight-text" hidden></p>
+      <p id="noteText" class="note-text" hidden></p>
+
+      <button id="analyzeAgainBtn" class="btn btn-secondary">وێنەیەکی تر بنێرە</button>
+    </section>
+
+    <!-- No-food state -->
+    <section id="noFoodCard" class="card state-card" hidden>
+      <span class="state-icon">🤔</span>
+      <p class="state-title">هیچ خواردنێک نەدۆزرایەوە</p>
+      <p id="noFoodMessage" class="state-sub"></p>
+      <button id="noFoodRetryBtn" class="btn btn-secondary">وێنەیەکی تر هەڵبژێرە</button>
+    </section>
+
+    <!-- Quota-exceeded state -->
+    <section id="quotaCard" class="card state-card state-card-warn" hidden>
+      <span class="state-icon">⏳</span>
+      <p class="state-title">سنووری ڕۆژانەت بەسەرچووە</p>
+      <p id="quotaMessage" class="state-sub"></p>
+    </section>
+
+    <!-- Error state -->
+    <section id="errorCard" class="card state-card state-card-error" hidden>
+      <span class="state-icon">⚠️</span>
+      <p class="state-title">هەڵەیەک ڕوویدا</p>
+      <p id="errorMessage" class="state-sub"></p>
+      <button id="errorRetryBtn" class="btn btn-secondary">دووبارە هەوڵ بدەوە</button>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>ئەنجامەکان مامناوەندن و بۆ ئاگاداری گشتین، نەک ڕاوێژی پزیشکی.</p>
+  </footer>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
